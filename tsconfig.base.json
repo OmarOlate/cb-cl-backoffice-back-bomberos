@@ -1,0 +1,28 @@
+{
+  "extends": "./tsconfig.strict.json",
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@cw-cl-backoffice-back-bomberos/login": [
+        "libs/auth/features/login/src/index.ts"
+      ],
+      "@cw-cl-backoffice-back-bomberos/swagger": [
+        "libs/common/utils/swagger/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
