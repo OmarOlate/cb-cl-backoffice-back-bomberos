@@ -1,0 +1,40 @@
+---
+services:
+  auth:
+    image: postgres:13
+    extends:
+      file: ./.devcontainer/compose.base.yml
+      service: base-project
+    volumes:
+      - auth-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: postgres
+    ports:
+      - 3306:5432
+    networks:
+      - backend-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - '5096:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    depends_on:
+      - auth
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - backend-network
+
+volumes:
+ node_modules:
+ auth-data:
+ pgadmin-data:
+
+networks:
+  backend-network:
+    driver: bridge
